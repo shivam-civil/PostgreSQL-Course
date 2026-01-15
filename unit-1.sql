@@ -40,7 +40,3 @@ SET DEFAULT 'UNKNOWN';
 ALTER TABLE materials_stock 
 ALTER COLUMN unit 
 DROP DEFAULT ;
-
-
-
-
