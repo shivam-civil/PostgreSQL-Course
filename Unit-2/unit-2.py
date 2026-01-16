@@ -1,7 +1,7 @@
 
 # UNIT - 2 :   
 
-#  CHECK CONSTRAINT 
+####  1 CHECK CONSTRAINT 
 
 # ADD CHECK CONSTRAINT WHILE CREATING TABLE 
 """
@@ -33,3 +33,26 @@ ALTER TABLE demo
 ADD CONSTRAINT unique_data UNIQUE (lname) ;
 """
 
+### 2 : CASE IN POSTGRESQL 
+
+# SHOW THE CATEGORY OF RATE WHETHER IT IS HIGH OR LOW BASED ON 4000
+"""
+SELECT *,
+CASE 
+WHEN rate >= 5000 THEN 'high' ELSE 'low'
+END AS rate_ctagory 
+FROM
+materials_stock ;
+"""
+
+# MULTIPLE WHEN CASE 
+"""
+SELECT *,
+CASE 
+WHEN rate >= 5000 THEN 'high'
+WHEN rate BETWEEN 0 AND 1000 THEN 'low'
+WHEN rate BETWEEN 1001 AND 5001 THEN 'MEDIUM'
+END AS rate_ctagory 
+FROM
+materials_stock ;
+"""
