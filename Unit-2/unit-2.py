@@ -56,3 +56,4 @@ END AS rate_ctagory
 FROM
 materials_stock ;
 """
+
