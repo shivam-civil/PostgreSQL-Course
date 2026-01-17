@@ -57,3 +57,67 @@ FROM
 materials_stock ;
 """
 
+####     VIEWS IN POSTGRESQL 
+'''
+VIEWS HELP US RUN A LIST OF COMMANDS BY SINGLE COMMAND . WE 
+CREATE A UNIUE TABLE WHICH IS CALLED AS VIEWS WHICH HOLDS THE SQL COMMANDS AND RUN AS PER THE USERS 
+COMMANDS.
+'''
+
+# FIRSTLY THE SCRIPT YOU WANT TO EXECUTE , YOU HAVE TO ADD A CREATE VIEW AT FIRST LINE AND 
+# AFTER THAT YOU CAN EXECUTE THAT BY SELECT * FROM VIEWS ;
+
+# CODE EXAMPLE 
+"""
+CREATE VIEW summary AS             
+SELECT 
+s.name AS STUDENTS,
+COUNT(c.course_name) AS NO_OF_COURSES,
+ROUND(SUM(e.given_fee)) AS TOTAL_FEE
+FROM enrollment e
+JOIN students s ON s.student_id=e.student_id 
+JOIN courses c ON  c.course_id=e.course_id
+GROUP BY s.name
+;
+"""
+
+# EXECUTION 
+'''
+SELECT * FROM summary;
+'''
+
+####          HAVING CLAUSE IN POSTGRESQL 
+'''
+USE AFTER GROUP BY STATEMENT WHEN YIU WANT A CONDITION AFTER GROUP BY 
+'''
+
+"""
+SELECT 
+s.name AS STUDENTS,
+COUNT(c.course_name) AS NO_OF_COURSES,
+ROUND(SUM(e.given_fee)) AS TOTAL_FEE
+FROM enrollment e
+JOIN students s ON s.student_id=e.student_id 
+JOIN courses c ON  c.course_id=e.course_id
+GROUP BY s.name
+HAVING ROUND(SUM(e.given_fee)) >= 8000
+;
+
+"""
+
+
+###   GROUP BY ROLLUP AND COALESCE
+"""
+SELECT  COALESCE(s.name,'TOTAL') AS STUDENTS,
+COUNT(c.course_name) AS NO_OF_COURSES,
+ROUND(SUM(e.given_fee)) AS TOTAL_FEE
+FROM enrollment e
+JOIN students s ON s.student_id=e.student_id 
+JOIN courses c ON  c.course_id=e.course_id
+GROUP BY ROLLUP(s.name)
+ORDER BY ROUND(SUM(e.given_fee))
+;
+"""
+
+###   STORED ROUTINE 
+
