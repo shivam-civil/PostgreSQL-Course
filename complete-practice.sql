@@ -115,9 +115,15 @@ FROM usage RIGHT JOIN materials  ON usage.mat_id=materials.mat_id ;
 SELECT usage.usage_id,usage.mat_id,materials.name
 FROM usage INNER JOIN materials  ON usage.mat_id=materials.mat_id ;
 
-
-
-
+-- INNER JOIN WITH GROUP BY 
+ SELECT m.name AS MATERIALS ,SUM(quantity) AS QUANTITY_USED
+ FROM 
+ usage u
+ INNER JOIN
+ materials m
+ ON m.mat_id=u.mat_id
+ GROUP BY name
+ ;
 
 
 
